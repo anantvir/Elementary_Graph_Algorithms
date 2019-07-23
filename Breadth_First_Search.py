@@ -131,7 +131,7 @@ class Graph:
     def get_vertex_dict(self):
         return self._outgoing
 
-
+"""Running Time = O(V+E), because V vertices are scanned, each of them exactly once, and for each vertex, its adjacency map is scanned, total of which becomes O(E)"""
 def Breadth_First_Search(G,s):
     l = list(G.vertices())              # Get all vertices as list []
     l.remove(s)                         # Remove source vertex, because source is already discovered, we dont need to set its color as WHITE and distance as infinity
