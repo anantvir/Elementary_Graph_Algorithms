@@ -156,6 +156,17 @@ def Breadth_First_Search(G,s):
         u.color = 'BLACK'               # After all neighbours of a node have been discovered and made gray, make the node 'BLACK', meaning it has been completely processed
 
 
+def BFS_Tree_Path(G,s,v):               # Prints shortest path from s to v       
+    if s == v:
+        print(s._element)
+    elif v.parent == None:              # If no parent for node v then obviosuly path is disconnected, so no path exists from s to v
+        print('No path exists from s to v !')
+    else:
+        BFS_Tree_Path(G,s,v.parent)
+        print(v._element)
+        
+
+
 
 g = Graph()
 r = g.insert_vertex('r')                # This graph is same as on CLRS page 596
@@ -177,4 +188,6 @@ g.insert_edge(t,u,'7')
 g.insert_edge(u,y,'8')
 g.insert_edge(x,y,'9')
 Breadth_First_Search(g,s)
+
+BFS_Tree_Path(g,s,t)
 
