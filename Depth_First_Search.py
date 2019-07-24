@@ -90,28 +90,28 @@ class Graph:
 
 time = 0
 def DFS(G):                                 
-    vertex_map = G.get_vertex_dict()
+    vertex_map = G.get_vertex_dict()        # Get Adjacency Map
     for vertex in G.vertices():
-        vertex.color = 'WHITE'
+        vertex.color = 'WHITE'              # Colour all vertices white and set parent to None for all of them
         vertex.parent = None
-    global time
-    for u in vertex_map:
-        if u.color == 'WHITE':
+    global time                             # Time needs to be global variable as it is to be modified inside a function
+    for u in vertex_map:                    # Run DFS_Visit(G,u) for each White node in the graph
+        if u.color == 'WHITE':              
             DFS_Visit(G,u)
 
-def DFS_Visit(G,u):
-    vertex_map = G.get_vertex_dict()
+def DFS_Visit(G,u):                 
+    vertex_map = G.get_vertex_dict()        # Get Adjacency Map
     global time
-    time = time + 1
-    u.d = time
-    u.color = 'GRAY'
-    for v in vertex_map[u].keys():
+    time = time + 1                         # Increment time
+    u.d = time                              # u.d =  time when the node is discovered first
+    u.color = 'GRAY'                        # Set color = GRAY
+    for v in vertex_map[u].keys():          # For each node in adjacency list of u, if the node is white, then set its parent as 'u' and recursively call DFS_Visit()
         if v.color == 'WHITE':
             v.parent = u
             DFS_Visit(G,v)
-    u.color = 'BLACK'
-    time = time + 1
-    u.f = time
+    u.color = 'BLACK'                       # When a node is completeley explored i.e it has no other adjacent nodes to which we can go to and we start coming out of recursion stack, make the node 'BLACK', increment time and update u.f
+    time = time + 1                         
+    u.f = time                              # u.f =  time when the node has been completely explored (finish time)
 
 
 g = Graph(directed = True)
