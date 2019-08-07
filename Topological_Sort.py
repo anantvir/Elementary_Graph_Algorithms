@@ -191,10 +191,11 @@ def DFS(G):
     global time
     for u in vertex_map:
         if u.color == 'WHITE':
-            return DFS_Visit(G,u)
+            DFS_Visit(G,u)
 
 
 """Procedure is exactly same as Depth First Search except line 211,212"""
+LL= LinkedList()
 def DFS_Visit(G,u):
     vertex_map = G.get_vertex_dict()
     global time
@@ -208,8 +209,7 @@ def DFS_Visit(G,u):
     u.color = 'BLACK'
     time = time + 1
     u.f = time
-    LL = LinkedList()                       # When a node is completely explored, add it to front of a linked list
-    LL.add_item_at_front(u)
+    LL.add_item_at_front(u)                 # When a node is completely explored, add it to front of a linked list
     return LL                               # Return the list
 
 
@@ -227,6 +227,8 @@ g.insert_edge(c,d,3)
 g.insert_edge(d,b,5)
 g.insert_edge(d,e,7)
 g.insert_edge(b,e,6)
+
+DFS(g)
 
 linked_list = DFS(g)
 lst = linked_list.traverse_linked_list()
